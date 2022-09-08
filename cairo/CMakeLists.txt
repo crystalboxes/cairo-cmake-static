@@ -714,8 +714,14 @@ if (APPLE)
   
   add_definitions(-iframework ${QUARTZ_LIBRARY}/Frameworks)
 
-  target_link_libraries(cairo
-    ${QUARTZ_LIBRARY} ${QUARTZCORE_LIBRARY} ${CORE_GRAPHICS_LIB} ${CORE_FOUNDATION_LIB})
+  target_link_libraries(cairo PRIVATE
+    ${QUARTZ_LIBRARY} 
+    ${QUARTZCORE_LIBRARY} 
+    ${CORE_GRAPHICS_LIB} 
+    ${CORE_FOUNDATION_LIB})
+
+  target_compile_definitions(cairo PUBLIC CAIRO_HAS_PTHREAD CAIRO_HAS_PDF_SURFACE CAIRO_HAS_PNG_FUNCTIONS) 
+
 endif()
 
 if(WIN32)
